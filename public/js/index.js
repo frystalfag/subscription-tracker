@@ -1,4 +1,5 @@
 const list = document.querySelector('#subscription-list');
+const errorBox = document.querySelector('#error');
 
 function createCard(subscription) {
   const card = document.createElement('div');
@@ -8,7 +9,7 @@ function createCard(subscription) {
   title.textContent = subscription.name;
 
   const price = document.createElement('p');
-  const cycle = subscription.cycle === 'monthly' ? 'kk' : 'vuosi';
+  const cycle = subscription.billingCycle === 'monthly' ? 'kk' : 'vuosi';
   price.textContent = `${subscription.price} € / ${cycle}`;
 
   const date = document.createElement('p');
@@ -28,8 +29,14 @@ function showSubscriptions(subscriptions) {
 }
 
 async function init() {
+  try {
     const subscriptions = await getSubscriptions();
     showSubscriptions(subscriptions);
+  } catch (error) {
+    // server is off or answered with an error
+    errorBox.textContent = 'Palvelimeen ei saada yhteyttä. Käynnistä palvelin ja päivitä sivu.';
+    errorBox.hidden = false;
+  }
 }
 
 init();
