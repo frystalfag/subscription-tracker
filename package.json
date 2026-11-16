@@ -1,0 +1,11 @@
+{
+  "name": "subscription-tracker",
+  "version": "1.0.0",
+  "description": "Tilausvahti – subscription tracker",
+  "scripts": {
+    "start": "json-server db.json"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}
