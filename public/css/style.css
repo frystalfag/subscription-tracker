@@ -1,0 +1,100 @@
+/* Theme: browser picks light or dark from the system settings */
+:root {
+  color-scheme: light dark;
+
+  /* light-dark(light value, dark value) */
+  --bg: light-dark(#f7f7f8, #18181b);
+  --surface: light-dark(#ffffff, #232327);
+  --text: light-dark(#1f1f23, #ececf0);
+  --muted: light-dark(#5f5f6b, #a1a1aa);
+  --border: light-dark(#dcdce1, #3a3a40);
+  --accent: light-dark(#4338ca, #a5b4fc);
+}
+
+/* padding and border are counted inside the width */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Header and navigation (mobile first) */
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+header p {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav a:hover {
+  background: var(--bg);
+}
+
+/* link of the page that is open now */
+nav a[aria-current="page"] {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+/* keyboard users need to see where the focus is */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+/* Bigger screens: logo left, menu right */
+@media (min-width: 40rem) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  main {
+    padding: 2rem;
+  }
+}
