@@ -1,0 +1,52 @@
+{
+  "subscriptions": [
+    {
+      "id": "1",
+      "name": "Netflix",
+      "category": "Viihde",
+      "price": 12.99,
+      "billingCycle": "monthly",
+      "nextPaymentDate": "2026-12-05"
+    },
+    {
+      "id": "2",
+      "name": "Spotify",
+      "category": "Musiikki",
+      "price": 10.99,
+      "billingCycle": "monthly",
+      "nextPaymentDate": "2026-11-22"
+    },
+    {
+      "id": "3",
+      "name": "Elixia",
+      "category": "Urheilu",
+      "price": 49.9,
+      "billingCycle": "monthly",
+      "nextPaymentDate": "2026-12-01"
+    },
+    {
+      "id": "4",
+      "name": "Microsoft 365",
+      "category": "Työ",
+      "price": 99,
+      "billingCycle": "yearly",
+      "nextPaymentDate": "2027-03-14"
+    },
+    {
+      "id": "5",
+      "name": "Disney+",
+      "category": "Viihde",
+      "price": 89.9,
+      "billingCycle": "yearly",
+      "nextPaymentDate": "2027-01-20"
+    },
+    {
+      "id": "6",
+      "name": "YouTube Premium",
+      "category": "Viihde",
+      "price": 12.99,
+      "billingCycle": "monthly",
+      "nextPaymentDate": "2026-11-28"
+    }
+  ]
+}
