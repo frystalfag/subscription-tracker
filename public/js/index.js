@@ -12,8 +12,8 @@ function createCard(subscription) {
   price.textContent = `${subscription.price} € / ${cycle}`;
 
   const date = document.createElement('p');
-  const formattedDate = new Date(subscription.startDate).toLocaleDateString("fi-FI");
-  date.textContent = `Seuraaava maksu: ${formattedDate}`;
+  const formattedDate = new Date(subscription.nextPaymentDate).toLocaleDateString("fi-FI");
+  date.textContent = `Seuraava maksu: ${formattedDate}`;
 
   card.append(title, price, date);
   return card;
