@@ -1,11 +1,27 @@
 const API_URL = "http://localhost:3000/subscriptions";
 
-async function getSubscriptions() {
+async function fetchSubscriptions() {
     const response = await fetch(API_URL);
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return response.json();
+    return await response.json();
+}
+
+async function createSubscription(subscription) {
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(subscription),
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
 }

@@ -30,10 +30,10 @@ function showSubscriptions(subscriptions) {
 
 async function init() {
   try {
-    const subscriptions = await getSubscriptions();
+    const subscriptions = await fetchSubscriptions();
     showSubscriptions(subscriptions);
   } catch (error) {
-    // server is off or answered with an error
+    // server is off or answered with error
     errorBox.textContent = 'Palvelimeen ei saada yhteyttä. Käynnistä palvelin ja päivitä sivu.';
     errorBox.hidden = false;
   }
@@ -41,4 +41,25 @@ async function init() {
 
 init();
 
+const form = document.querySelector('#add-form');
 
+form.addEventListener('submit', async function(event) {
+  event.preventDefault(); // dont reload the page
+
+  const newSubscription = {
+    name: document.querySelector('#name').value,
+    category: document.querySelector('#category').value,
+    price: Number(document.querySelector('#price').value),
+    billingCycle: document.querySelector('#cycle').value,
+    nextPaymentDate: document.querySelector('#date').value
+  };
+
+  try {
+    const saved = await createSubscription(newSubscription);
+    list.append(createCard(saved));
+    form.reset();
+  } catch (error) {
+    errorBox.textContent = 'Tilauksen lisääminen epäonnistui.';
+    errorBox.hidden = false;
+  }
+});
