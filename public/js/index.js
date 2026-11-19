@@ -16,7 +16,28 @@ function createCard(subscription) {
   const formattedDate = new Date(subscription.nextPaymentDate).toLocaleDateString("fi-FI");
   date.textContent = `Seuraava maksu: ${formattedDate}`;
 
-  card.append(title, price, date);
+  // кнопка меню, popover открывается сам через popovertarget, js не нужен
+  const btn = document.createElement('button');
+  btn.textContent = '⋮';
+  btn.classList.add('menu-btn');
+  btn.setAttribute('aria-label', 'Valikko');
+  btn.setAttribute('popovertarget', 'menu-' + subscription.id);
+
+  // само меню, id у каждой карточки свой
+  const menu = document.createElement('div');
+  menu.id = 'menu-' + subscription.id;
+  menu.setAttribute('popover', '');
+  menu.classList.add('menu');
+
+  const editBtn = document.createElement('button');
+  editBtn.textContent = 'Muokkaa';
+
+  const delBtn = document.createElement('button');
+  delBtn.textContent = 'Poista';
+
+  menu.append(editBtn, delBtn);
+
+  card.append(btn, title, price, date, menu);
   return card;
 }
 
