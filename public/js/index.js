@@ -35,6 +35,11 @@ function createCard(subscription) {
   const delBtn = document.createElement('button');
   delBtn.textContent = 'Poista';
 
+  editBtn.addEventListener('click', function() {
+    menu.hidePopover();
+    openEdit(subscription);
+  });
+
   menu.append(editBtn, delBtn);
 
   card.append(btn, title, price, date, menu);
@@ -83,4 +88,46 @@ form.addEventListener('submit', async function(event) {
     errorBox.textContent = 'Tilauksen lisääminen epäonnistui.';
     errorBox.hidden = false;
   }
+});
+
+// muokkaa
+const editDialog = document.querySelector('#edit-dialog');
+const editForm = document.querySelector('#edit-form');
+let editId = null; // тут храню id подписки которую сейчас меняем
+
+// заполняю форму старыми данными и открываю dialog
+function openEdit(subscription) {
+  editId = subscription.id;
+  document.querySelector('#edit-name').value = subscription.name;
+  document.querySelector('#edit-category').value = subscription.category;
+  document.querySelector('#edit-price').value = subscription.price;
+  document.querySelector('#edit-cycle').value = subscription.billingCycle;
+  document.querySelector('#edit-date').value = subscription.nextPaymentDate;
+  editDialog.showModal();
+}
+
+editForm.addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  const changes = {
+    name: document.querySelector('#edit-name').value,
+    category: document.querySelector('#edit-category').value,
+    price: Number(document.querySelector('#edit-price').value),
+    billingCycle: document.querySelector('#edit-cycle').value,
+    nextPaymentDate: document.querySelector('#edit-date').value
+  };
+
+  try {
+    await updateSubscription(editId, changes);
+    editDialog.close();
+    init(); // заново загружаю список, чтобы карточка обновилась
+  } catch (error) {
+    editDialog.close();
+    errorBox.textContent = 'Tilauksen muokkaaminen epäonnistui.';
+    errorBox.hidden = false;
+  }
+});
+
+document.querySelector('#edit-cancel').addEventListener('click', function() {
+  editDialog.close();
 });

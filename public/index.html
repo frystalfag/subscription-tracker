@@ -66,6 +66,39 @@
 
       <p id="error" class="error" role="alert" hidden></p>
       <div id="subscription-list" class="card-list"></div>
+
+      <dialog id="edit-dialog">
+        <h2>Muokkaa tilausta</h2>
+
+        <form id="edit-form" class="form">
+          <label for="edit-name">Nimi</label>
+          <input type="text" id="edit-name" list="services" required />
+
+          <label for="edit-category">Kategoria</label>
+          <select id="edit-category" required>
+            <option value="Viihde">Viihde</option>
+            <option value="Musiikki">Musiikki</option>
+            <option value="Urheilu">Urheilu</option>
+            <option value="Työ">Työ</option>
+            <option value="Muu">Muu</option>
+          </select>
+
+          <label for="edit-price">Hinta (€)</label>
+          <input type="number" id="edit-price" required min="0" step="0.01" />
+
+          <label for="edit-cycle">Laskutus</label>
+          <select id="edit-cycle" required>
+            <option value="monthly">Kuukausittain</option>
+            <option value="yearly">Vuosittain</option>
+          </select>
+
+          <label for="edit-date">Seuraava maksu</label>
+          <input type="date" id="edit-date" required />
+
+          <button type="submit">Tallenna</button>
+          <button type="button" id="edit-cancel">Peruuta</button>
+        </form>
+      </dialog>
     </main>
   </body>
 </html>

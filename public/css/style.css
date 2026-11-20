@@ -172,6 +172,31 @@ h1 {
   cursor: pointer;
 }
 
+/* dialog */
+dialog {
+  width: 90%;
+  max-width: 30rem;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  color: var(--text);
+}
+
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.5);
+}
+
+dialog .form {
+  margin-bottom: 0;
+}
+
+#edit-cancel {
+  margin-top: 0.5rem;
+  background: none;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
 /* Error message when the server does not answer */
 .error {
   padding: 1rem;
